@@ -11,9 +11,9 @@ func SetupRouter() *gin.Engine {
 	router := gin.Default()
 	router.Use(cors.Default())
 
-	router.POST("/login", controller.LoginHandle)
-	router.POST("/register", controller.RegisterHandle)
-	router.POST("/chat", middleware.JwtAuth(), controller.ChatHandle)
+	router.POST("/login", controller.LoginHandler)
+	router.POST("/register", controller.RegisterHandler)
+	router.GET("/ws", middleware.JwtAuth(), controller.WsHandler)
 
 	return router
 }
