@@ -5,19 +5,12 @@ import (
 	"database/sql"
 	"fmt"
 	"github.com/dgrijalva/jwt-go"
-	"time"
 )
 
 type User struct {
 	Username string
 	Password string
 	Salt     string
-}
-
-type Message struct {
-	UserName string
-	Message  string
-	Date     time.Time
 }
 
 type MyClaim struct {
@@ -44,7 +37,7 @@ func FindPassword(userInfo *User) (password string, salt string) {
 }
 
 // FindUser Find user by username.Return "False" if not found.
-func FindUser(userInfo *User) bool {
+func FindUser(username string) bool {
 	sqlStr := "SELECT * FROM user_infos WHERE username = ?"
 	stmt, err := dao.DB.Prepare(sqlStr)
 	if err != nil {
@@ -58,7 +51,7 @@ func FindUser(userInfo *User) bool {
 		}
 	}(stmt)
 
-	rows, err := stmt.Query(userInfo.Username)
+	rows, err := stmt.Query(username)
 	if err != nil {
 		fmt.Println("[ERROR]Query failed", err)
 	}
