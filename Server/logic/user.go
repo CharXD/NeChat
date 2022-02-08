@@ -28,7 +28,7 @@ func Register(userInfo *models.User) gin.H {
 	if ok, _ := regexp.MatchString("^[a-zA-Z0-9-_]{4,16}$", userInfo.Username); ok {
 		userInfo.Salt = generateSalt()
 		userInfo.Password = md5Crypto(userInfo.Password, userInfo.Salt)
-		if models.FindUser(userInfo) {
+		if models.FindUser(userInfo.Username) {
 			models.AddUserInfo(userInfo)
 			return gin.H{"code": 0, "msg": "Register success.", "token": createToken(userInfo.Username)}
 		} else {
