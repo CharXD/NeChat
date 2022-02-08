@@ -11,7 +11,7 @@
           <el-input class="username_input" v-model="username" placeholder="Your nick name..."></el-input>
           <el-input class="password_input" v-model="password" show-password placeholder="Enter your password..."></el-input>
           <el-input class="confirm_password_input" v-model="confirm_password" show-password placeholder="Enter your password again..."></el-input>
-          <el-button @click="login">Register</el-button>
+          <el-button @click="register">Register</el-button>
           <el-link href="#/Login" type="info">login</el-link>
         </div>
       </div>
@@ -34,9 +34,8 @@ export default {
     }
   },
   methods: {
-    login() {
-      this.$router.replace('#/Login');
-
+    register() {
+      // this.$router.replace('#/Register');
       if (this.username === null || this.password === null || this.confirm_password === null) {
         Message({
           message: '用户名或密码不能为空', type: 'warning', duration: 1500
