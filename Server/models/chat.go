@@ -24,10 +24,10 @@ type Client struct {
 
 // Message is return msg
 type Message struct {
-	Sender    string `json:"sender,omitempty"`
-	Recipient string `json:"recipient,omitempty"`
-	Content   string `json:"content,omitempty"`
-	Date      time.Time
+	Sender    string    `json:"sender,omitempty"`
+	Recipient string    `json:"recipient,omitempty"`
+	Content   string    `json:"content,omitempty"`
+	Date      time.Time `json:"date,omitempty"`
 }
 
 // Manager define a ws server manager
