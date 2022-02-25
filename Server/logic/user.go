@@ -39,6 +39,11 @@ func Register(userInfo *models.User) gin.H {
 	}
 }
 
+func DeleteUser(username string) gin.H {
+	models.Delete(username)
+	return gin.H{"code": 0, "msg": "Account deleted successfully."}
+}
+
 func md5Crypto(password string, salt string) string {
 	m := md5.New()
 	m.Write([]byte(password))

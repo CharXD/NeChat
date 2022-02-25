@@ -14,6 +14,7 @@ func SetupRouter() *gin.Engine {
 	router.POST("/login", controller.LoginHandler)
 	router.POST("/register", controller.RegisterHandler)
 	router.GET("/ws", middleware.JwtAuth(), controller.WsHandler)
+	router.DELETE("/user", middleware.JwtAuth(), controller.DeleteUserHandler)
 
 	return router
 }

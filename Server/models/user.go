@@ -23,6 +23,7 @@ func AddUserInfo(userInfo *User) {
 	_, err := dao.DB.Exec(sqlStr, userInfo.Username, userInfo.Password, userInfo.Salt)
 	if err != nil {
 		fmt.Println("[ERROR]Inset data failed,", err)
+		return
 	}
 }
 
@@ -32,6 +33,7 @@ func FindPassword(userInfo *User) (password string, salt string) {
 	err := dao.DB.QueryRow(sqlStr, userInfo.Username).Scan(&password, &salt)
 	if err != nil {
 		fmt.Println("[ERROR]Select data failed,", err)
+		return
 	}
 	return password, salt
 }
@@ -59,4 +61,17 @@ func FindUser(username string) bool {
 		return false
 	}
 	return true
+}
+
+func Delete(username string) {
+	sqlStr := "DELETE FROM user_infos WHERE username = ?"
+	ret, err := dao.DB.Exec(sqlStr, username)
+	if err != nil {
+		fmt.Println()
+	}
+	_, err = ret.RowsAffected()
+	if err != nil {
+		fmt.Println()
+		return
+	}
 }

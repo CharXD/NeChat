@@ -39,7 +39,7 @@ func RegisterHandler(c *gin.Context) {
 	c.JSON(http.StatusOK, logic.Register(&userInfo))
 }
 
-// WsHandler TestHandler socket 连接 中间件 作用:升级协议,用户验证,自定义信息等
+// WsHandler 升级协议,自定义信息等
 func WsHandler(c *gin.Context) {
 	username := c.Query("username")
 	friendName := c.Query("friend_id")
@@ -48,7 +48,6 @@ func WsHandler(c *gin.Context) {
 		http.NotFound(c.Writer, c.Request)
 		return
 	}
-	//可以添加用户信息验证
 	client := &models.Client{
 		ID:     logic.CreatId(username, friendName),
 		Socket: conn,
@@ -57,4 +56,12 @@ func WsHandler(c *gin.Context) {
 	models.Manager.Register <- client
 	go logic.Read(client)
 	go logic.Write(client)
+}
+
+func DeleteUserHandler(c *gin.Context) {
+	username, err := c.Get("Username")
+	if err {
+		fmt.Println("[ERROR]Handler var get failed.")
+	}
+	c.JSON(http.StatusOK, logic.DeleteUser(username.(string)))
 }
