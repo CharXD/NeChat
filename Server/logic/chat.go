@@ -9,7 +9,7 @@ import (
 )
 
 // WsStart is  项目运行前, 协程开启start -> go Manager.WsStart()
-func WsStart(manager *models.ClientManager) {
+func WsStart() {
 	for {
 		log.Println("<---管道通信--->")
 		select {
@@ -53,7 +53,11 @@ func CreatId(uid, fid string) string {
 func Read(c *models.Client) {
 	defer func() {
 		models.Manager.Unregister <- c
-		c.Socket.Close()
+		err := c.Socket.Close()
+		if err != nil {
+			fmt.Println(err)
+			return
+		}
 	}()
 
 	for {
@@ -61,7 +65,11 @@ func Read(c *models.Client) {
 		_, message, err := c.Socket.ReadMessage()
 		if err != nil {
 			models.Manager.Unregister <- c
-			c.Socket.Close()
+			err := c.Socket.Close()
+			if err != nil {
+				fmt.Println(err)
+				return
+			}
 			break
 		}
 		log.Printf("读取到客户端的信息:%s", string(message))
@@ -71,19 +79,31 @@ func Read(c *models.Client) {
 
 func Write(c *models.Client) {
 	defer func() {
-		c.Socket.Close()
+		err := c.Socket.Close()
+		if err != nil {
+			fmt.Println(err)
+			return
+		}
 	}()
 
 	for {
 		select {
 		case message, ok := <-c.Send:
 			if !ok {
-				c.Socket.WriteMessage(websocket.CloseMessage, []byte{})
+				err := c.Socket.WriteMessage(websocket.CloseMessage, []byte{})
+				if err != nil {
+					fmt.Println(err)
+					return
+				}
 				return
 			}
 			log.Printf("发送到到客户端的信息:%s", string(message))
 
-			c.Socket.WriteMessage(websocket.TextMessage, message)
+			err := c.Socket.WriteMessage(websocket.TextMessage, message)
+			if err != nil {
+				fmt.Println(err)
+				return
+			}
 		}
 	}
 }
