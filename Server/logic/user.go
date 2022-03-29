@@ -14,12 +14,19 @@ import (
 )
 
 func Login(userInfo *models.User) gin.H {
-	password, salt := models.FindPassword(userInfo)
+	password, salt, err := models.FindPassword(userInfo)
+	if err != nil {
+		return gin.H{"code": 1, "msg": "Server Error."}
+	}
 	cryptPassword := md5Crypto(userInfo.Password, salt)
 	if password == cryptPassword {
-		return gin.H{"code": 0, "msg": "Login success.", "token": createToken(userInfo.Username)}
+		token, err := createToken(userInfo.Username)
+		if err != nil {
+			return gin.H{"code": 2, "msg": "Server Error."}
+		}
+		return gin.H{"code": 0, "msg": "Login success.", "token": token}
 	} else {
-		return gin.H{"code": 1, "msg": "Username or password is wrong.", "token": ""}
+		return gin.H{"code": 1, "msg": "Username or password is wrong."}
 	}
 }
 
@@ -28,10 +35,16 @@ func Register(userInfo *models.User) gin.H {
 	if ok, _ := regexp.MatchString("^[a-zA-Z0-9-_]{4,16}$", userInfo.Username); ok {
 		userInfo.Salt = generateSalt()
 		userInfo.Password = md5Crypto(userInfo.Password, userInfo.Salt)
-		if models.FindUser(userInfo.Username) {
-			models.AddUserInfo(userInfo)
+		if ok, err := models.FindUser(userInfo.Username); ok {
+			err := models.AddUserInfo(userInfo)
+			if err != nil {
+				return gin.H{"code": 1, "msg": "Server Error."}
+			}
 			return gin.H{"code": 0, "msg": "Register success.", "token": createToken(userInfo.Username)}
 		} else {
+			if err != nil {
+				return gin.H{"code": 2, "msg": "Server Error."}
+			}
 			return gin.H{"code": 1, "msg": "Username is taken."}
 		}
 	} else {
@@ -40,7 +53,10 @@ func Register(userInfo *models.User) gin.H {
 }
 
 func DeleteUser(username string) gin.H {
-	models.Delete(username)
+	err := models.Delete(username)
+	if err != nil {
+		return gin.H{"code": 1, "msg": "Server Error."}
+	}
 	return gin.H{"code": 0, "msg": "Account deleted successfully."}
 }
 
@@ -60,7 +76,7 @@ func generateSalt() (salt string) {
 	return
 }
 
-func createToken(username string) string {
+func createToken(username string) (signedString string, err error) {
 	claim := models.MyClaim{
 		Username: username,
 		StandardClaims: jwt.StandardClaims{
@@ -70,9 +86,10 @@ func createToken(username string) string {
 		},
 	}
 	token := jwt.NewWithClaims(jwt.SigningMethodHS256, claim)
-	signedString, err := token.SignedString([]byte(config.JWTSingedKey))
+	signedString, err = token.SignedString([]byte(config.JWTSingedKey))
 	if err != nil {
 		fmt.Println(err)
+		return "", err
 	}
-	return signedString
+	return signedString, nil
 }

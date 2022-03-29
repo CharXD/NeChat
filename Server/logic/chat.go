@@ -3,6 +3,7 @@ package logic
 import (
 	"NeChat/models"
 	"encoding/json"
+	"fmt"
 	"github.com/gorilla/websocket"
 	"log"
 )
@@ -27,7 +28,10 @@ func WsStart(manager *models.ClientManager) {
 			}
 		case message := <-models.Manager.Broadcast:
 			MessageStruct := models.Message{}
-			json.Unmarshal(message, &MessageStruct)
+			err := json.Unmarshal(message, &MessageStruct)
+			if err != nil {
+				fmt.Println("[ERROR]Data unmarshal failed.")
+			}
 			models.AddMessage(&MessageStruct)
 			for id, conn := range models.Manager.Clients {
 				if id != CreatId(MessageStruct.Recipient, MessageStruct.Sender) {

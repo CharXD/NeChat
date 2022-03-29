@@ -16,10 +16,14 @@ func LoginHandler(c *gin.Context) {
 	//创建用户对象、接收服务端json
 	if err != nil {
 		fmt.Println("[ERROR]Response get failed,", err)
+		c.JSON(http.StatusOK, gin.H{"code": 1, "msg": "Server Error"})
+		return
 	}
 	err = json.Unmarshal(resp, &userInfo)
 	if err != nil {
 		fmt.Println("[ERROR]Json unmarshal failed,", err)
+		c.JSON(http.StatusOK, gin.H{"code": 1, "msg": "Server Error"})
+		return
 	}
 
 	c.JSON(http.StatusOK, logic.Login(&userInfo))
@@ -30,10 +34,14 @@ func RegisterHandler(c *gin.Context) {
 	resp, err := c.GetRawData()
 	if err != nil {
 		fmt.Println("[ERROR]Response get failed,", err)
+		c.JSON(http.StatusOK, gin.H{"code": 1, "msg": "Server Error"})
+		return
 	}
 	err = json.Unmarshal(resp, &userInfo)
 	if err != nil {
 		fmt.Println("[ERROR]Json unmarshal failed,", err)
+		c.JSON(http.StatusOK, gin.H{"code": 1, "msg": "Server Error"})
+		return
 	}
 
 	c.JSON(http.StatusOK, logic.Register(&userInfo))
@@ -62,6 +70,8 @@ func DeleteUserHandler(c *gin.Context) {
 	username, err := c.Get("Username")
 	if err {
 		fmt.Println("[ERROR]Handler var get failed.")
+		c.JSON(http.StatusOK, gin.H{"code": 1, "msg": "Server Error"})
+		return
 	}
 	c.JSON(http.StatusOK, logic.DeleteUser(username.(string)))
 }

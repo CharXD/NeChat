@@ -39,7 +39,7 @@ var Manager = ClientManager{
 }
 
 func AddMessage(message *Message) {
-	sqlStr := "INSERT INTO user_infos (sender, recipient, content, date) VALUES (?, ?, ?, ?)"
+	sqlStr := "INSERT INTO messages (sender, recipient, content, date) VALUES (?, ?, ?, ?)"
 	_, err := dao.DB.Exec(sqlStr, message.Sender, message.Recipient, message.Content, message.Date)
 	if err != nil {
 		fmt.Println("[ERROR]Inset data(message) failed,", err)
