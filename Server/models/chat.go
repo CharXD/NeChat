@@ -4,7 +4,6 @@ import (
 	"NeChat/dao"
 	"fmt"
 	"github.com/gorilla/websocket"
-	"time"
 )
 
 // ClientManager is a websocket manager
@@ -24,10 +23,10 @@ type Client struct {
 
 // Message is return msg
 type Message struct {
-	Sender    string    `json:"sender,omitempty"`
-	Recipient string    `json:"recipient,omitempty"`
-	Content   string    `json:"content,omitempty"`
-	Date      time.Time `json:"date,omitempty"`
+	Sender    string `json:"sender,omitempty"`
+	Recipient string `json:"recipient,omitempty"`
+	Content   string `json:"content,omitempty"`
+	Date      int    `json:"date,omitempty"`
 }
 
 // Manager define a ws server manager
