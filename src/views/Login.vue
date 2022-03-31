@@ -140,6 +140,6 @@ export default {
 }
 
 .el-link {
-  margin-top: 15px;
+  margin: 15px 0 0 134px;
 }
 </style>
