@@ -21,13 +21,13 @@
 
 <script>
 import axios from "axios"
-import {Message} from 'element-ui';
+// import {Message} from 'element-ui';
 
 export default {
   name: 'Register',
   data() {
     return {
-      img: require('../assets/background.png'),
+      img: require('../assets/img/background.png'),
       username: null,
       password: null,
       confirm_password: null
@@ -37,14 +37,14 @@ export default {
     register() {
       // this.$router.replace('#/Register');
       if (this.username === null || this.password === null || this.confirm_password === null) {
-        Message({
+        this.$message({
           message: '用户名或密码不能为空', type: 'warning', duration: 1500
         });
         return;
       }
 
       if (this.password !== this.confirm_password) {
-        Message({
+        this.$message({
           message: '两次输入密码不一致', type: 'warning', duration: 1500
         });
         return;
@@ -54,14 +54,14 @@ export default {
       const p_pattern =/^.*(?=.{6,})(?=.*\d)(?=.*[A-Z])(?=.*[a-z])(?=.*[!@#$%^&*?.]).*$/;
 
       if (!u_pattern.test(this.username)) {
-        Message({
+        this.$message({
           message: '用户名必须符合4到16位（字母，数字，下划线，减号）', type: 'warning', duration: 1500
         });
         return;
       }
 
       if (!p_pattern.test(this.password)) {
-        Message({
+        this.$message({
           message: '密码最少6位，包括至少1个大写字母，1个小写字母，1个数字，1个特殊字符', type: 'warning', duration: 1500
         });
         return;
@@ -74,17 +74,17 @@ export default {
           .then(function (response) {
             const data = response.data;
             if (data.code === 0) {
-              Message({
+              this.$message({
                 message: data.msg, type: 'success', duration: 1500
               });
             } else {
-              Message({
+              this.$message({
                 message: data.msg, type: 'error', duration: 1500
               });
             }
           })
           .catch(function (error) {
-            Message({
+            this.$message({
               message: error, type: 'error', duration: 1500
             });
           })
@@ -100,7 +100,7 @@ export default {
   left: 0;
   height: 100%;
   width: 100%;
-  background: url(../assets/background.png) no-repeat fixed center center;
+  background: url(../assets/img/background.png) no-repeat fixed center center;
   background-size:cover;
 }
 
@@ -129,13 +129,15 @@ export default {
   position: absolute;
   left: 0;
   right: 0;
-  margin: 10% auto;
+  margin: 30px auto;
+  width: 90px;
 }
 
 .cardHead p {
   position: absolute;
-  margin: 40% 76px;
+  margin: 140px 81px;
   font-size: 20px;
+  width: 180px;
 }
 
 .cardBody {

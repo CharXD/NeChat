@@ -75,7 +75,7 @@ export default {
   left: 0;
   height: 100%;
   width: 100%;
-  background: url(../assets/background.png) no-repeat fixed center center;
+  background: url(../assets/img/background.png) no-repeat fixed center center;
   background-size:cover;
 }
 .card {
@@ -103,12 +103,13 @@ export default {
   position: absolute;
   left: 0;
   right: 0;
-  margin: 15% auto;
+  margin: 30px auto;
+  width: 90px;
 }
 
 .cardHead p {
   position: absolute;
-  margin: 45% 81px;
+  margin: 140px 81px;
   font-size: 20px;
 }
 

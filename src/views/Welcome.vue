@@ -16,24 +16,24 @@
 export default {
   name: "Welcome",
   methods: {
-    jumpLogin() {undefined
+    jumpLogin() {
       window.location.href = '/#/Login'
     },
-    jumpRegister() {undefined
+    jumpRegister() {
       window.location.href = '/#/Register'
     },
   }
 }
 </script>
 
-<style scoped>
+<style lang="less" scoped>
 .bg {
   position: absolute;
   top: 0;
   left: 0;
   height: 100%;
   width: 100%;
-  background: url(../assets/background_welcome.jpg) no-repeat fixed center center;
+  background: url(../assets/img/background_welcome.jpg) no-repeat fixed center center;
   background-size: cover;
 }
 
