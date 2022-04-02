@@ -4,7 +4,6 @@
       <el-container>
         <!--联系人-->
         <el-aside width="200px">
-
           <div class="avatar_box">
             <div class="avatar_top_box">
               <el-avatar :size="40" src="https://avatars.githubusercontent.com/u/96650292?v=4"></el-avatar>
@@ -12,17 +11,17 @@
             </div>
 
             <div class="main_box">
-
-              <Avatar></Avatar>
-              <Avatar></Avatar>
-              <Avatar></Avatar>
-              <Avatar></Avatar>
-              <Avatar></Avatar>
-              <Avatar></Avatar>
-              <Avatar></Avatar>
-              <Avatar></Avatar>
-              <Avatar></Avatar>
-              <Avatar></Avatar>
+              <el-menu :router="true">
+                <el-menu-item :index="'/talk'">
+                  <Avatar></Avatar>
+                </el-menu-item>
+                <el-menu-item :index="'/talk'">
+                  <Avatar></Avatar>
+                </el-menu-item>
+                <el-menu-item :index="'/talk'">
+                  <Avatar></Avatar>
+                </el-menu-item>
+              </el-menu>
             </div>
             <!--底部设置按钮-->
             <div class="footer_box">
@@ -39,9 +38,7 @@
           <router-view></router-view>
         </el-main>
 
-        <el-aside width="200px" class="message_box">
-          right
-        </el-aside>
+
       </el-container>
     </div>
 
@@ -49,13 +46,15 @@
 </template>
 
 <script>
-import Avatar from "@/components/Avatar.vue";
+import Avatar from "../components/Avatar.vue";
 
 export default {
   name: "chat.vue",
   data() {
     return {
-      textarea: ''
+      sendMsg: {
+        message: "",
+      }
     }
   },
   components: {Avatar,},
@@ -85,9 +84,8 @@ export default {
   transform: translate(-50%, -50%);
   height: 650px;
   min-width: 1100px;
-
-  background-color: #d0c6bd;
-  box-shadow: 0 0 10px 5px #cac0b7;
+  //background-color: #d0c6bd;
+  //box-shadow: 0 0 10px 5px #cac0b7;
   border-radius: 30px;
 }
 
@@ -105,12 +103,13 @@ export default {
 .el-main {
   height: 100%;
   background: pink;
+  width: 100%;
   border-left: #ccc solid 3px;
+  padding: 0;
+  overflow-y: auto;
 }
 
-.message_box {
-  background-color: saddlebrown;
-}
+
 
 // 左侧头像盒子
 .avatar_box {
@@ -118,12 +117,19 @@ export default {
 
 }
 
+.el-menu-item {
+  width: 100%;
+  font-size: 16px;
+  padding: 0 !important;
+  line-height: 45px;
+}
+
 // 自己的头像和名字
 .avatar_top_box {
   width: 100%;
   height: 70px;
   background-color: #EEEBDD;
-  border-bottom: solid 1px black;
+  border-bottom: solid 1px #ccc;
 
   .el-avatar {
     margin-left: 10px;
@@ -138,20 +144,27 @@ export default {
   }
 }
 
+.el-menu-item {
+  width: 100%;
+ margin-top: 8px;
+}
+
 // 联系人
 .main_box {
   height: 540px;
   overflow-y: scroll;
   background-color: #F7F7F7;
+
 }
 
 // 底部设置
 .footer_box {
-
   .el-button {
     border-radius: 0;
     width: 100%;
     font-size: 15px;
   }
 }
+
+
 </style>
