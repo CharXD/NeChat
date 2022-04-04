@@ -56,6 +56,11 @@ export default {
   bottom: 0;
   right: 0;
   margin: auto;
+
+  h3 {
+    padding-left: 20px;
+    padding-top: 20px;
+  }
 }
 
 .card h2, h3 {
@@ -64,6 +69,7 @@ export default {
   font-weight: 500;
   letter-spacing: .3rem;
   text-transform: uppercase;
+  margin: 60px 0 60px 0;
 }
 
 .el-button, .el-button:focus {
