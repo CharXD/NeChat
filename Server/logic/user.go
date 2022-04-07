@@ -40,7 +40,11 @@ func Register(userInfo *models.User) gin.H {
 			if err != nil {
 				return gin.H{"code": 1, "msg": "Server Error."}
 			}
-			return gin.H{"code": 0, "msg": "Register success.", "token": createToken(userInfo.Username)}
+			token, err := createToken(userInfo.Username)
+			if err != nil {
+				return gin.H{"code": 2, "msg": "Server Error."}
+			}
+			return gin.H{"code": 0, "msg": "Register success.", "token": token}
 		} else {
 			if err != nil {
 				return gin.H{"code": 2, "msg": "Server Error."}
