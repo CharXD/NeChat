@@ -1,0 +1,12 @@
+FROM mariadb:latest
+
+MAINTAINER yeol
+
+ADD *.sql /docker-entrypoint-initdb.d
+
+ENV MYSQL_RANDOM_ROOT_PASSWORD yes
+ENV MYSQL_DATABASE nechat
+ENV MYSQL_USER dbuser
+ENV MYSQL_PASSWORD 123456
+
+EXPOSE 3306
