@@ -20,10 +20,12 @@
 
 **2022.04.08**:
 
-@yeol 的场外援助，或者说是捣乱，无所谓了。总之现在能用 docker 跑起后端：
+@yeol 的场外援助，或者说是捣乱，无所谓了。总之现在能用 docker 跑起来：
 
 ```
 docker-compose up -d
 ```
 
-默认 `nechat-server` 映射到了宿主机的 9999 端口，`nechat-database`映射到了宿主机的 3306 端口，供调试。
+`nechat-server` 映射到了宿主机的 9999 端口
+`nechat-database` 映射到了宿主机的 3306 端口
+`nechat-client` 映射到了宿主机的 8080 端口
