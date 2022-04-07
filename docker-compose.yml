@@ -1,0 +1,22 @@
+version: "3.8"
+services:
+  server:
+    container_name: nechat-server
+    build: ./Server
+    ports:
+      - "9999:9999"
+    depends_on:
+      - database
+    networks:
+      - backend
+  
+  database:
+    container_name: nechat-database
+    build: ./Database
+    ports:
+      - "3306:3306"
+    networks:
+      - backend
+
+networks:
+  backend:
