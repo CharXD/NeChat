@@ -18,5 +18,11 @@ services:
     networks:
       - backend
 
+  client:
+    container_name: nechat-client
+    build: ./Client
+    ports:
+      - "8080:8080"
+
 networks:
   backend:
