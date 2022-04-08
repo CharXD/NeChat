@@ -7,6 +7,7 @@
 
 <script>
 export default {
+
   name: "UserAvatar"
 }
 </script>
@@ -14,7 +15,7 @@ export default {
 <style scoped lang="less">
 .userAvatar {
   width: 100%;
-  height: 80px;
+  height: 70px;
   background-color: #eeebdd;
   line-height: 80px;
   border-bottom: 1px solid #ccc;

@@ -1,60 +1,73 @@
 <template>
   <div class="bg">
     <div class="stage">
-      <!--            <el-container>
-                    &lt;!&ndash;联系人&ndash;&gt;
-                    <el-aside width="200px">
-                      <div class="avatar_box">
-                        <div class="avatar_top_box">
-                          <el-avatar :size="40" src="https://avatars.githubusercontent.com/u/96650292?v=4"></el-avatar>
-                          <span>木子日天</span>
-                        </div>
 
-                        <div class="main_box">
-                          <el-menu :router="true">
-                            <el-menu-item :index="'/chat/talk'">
-                              <Avatar></Avatar>
-                            </el-menu-item>
-                            <el-menu-item :index="'/chat/talk'">
-                              <Avatar></Avatar>
-                            </el-menu-item>
-                            <el-menu-item :index="'/chat/talk'">
-                              <Avatar></Avatar>
-                            </el-menu-item>
-                          </el-menu>
-                        </div>
+      <!--      <div class="mainBox">
+              &lt;!&ndash;左侧联系人区域&ndash;&gt;
+              <div class="leftBox">
+                <el-aside width="200px">
+                  &lt;!&ndash;我的头像&ndash;&gt;
+                  <user-avatar></user-avatar>
+                  &lt;!&ndash;联系人的头像&ndash;&gt;
+                  <div class="friendBox">
+                    <el-menu router>
+                      <el-menu-item :index="'/chat/talk'" v-for="(i,index) in friendList" :key="index">
+                        <Friend-avatar :friendList="i"></Friend-avatar>
+                      </el-menu-item>
+                    </el-menu>
+                  </div>
+                  &lt;!&ndash;设置区域&ndash;&gt;
 
-                      </div>
+                  <el-button type="primary" icon="el-icon-s-tools">设置</el-button>
 
-                    </el-aside>
-                    &lt;!&ndash;聊天&ndash;&gt;
-                    <el-main>
-                      <router-view></router-view>
-                    </el-main>
+                </el-aside>
 
+              </div>
+              <el-container>
+                &lt;!&ndash;头部区域&ndash;&gt;
+                <el-header>
+                  Header
+                </el-header>
+                &lt;!&ndash;主体区域&ndash;&gt;
+                <el-main>
+                  <router-view></router-view>
+                </el-main>
+                &lt;!&ndash;底部发送消息区域&ndash;&gt;
+                <el-footer>Footer</el-footer>
+              </el-container>
+            </div>-->
 
-                  </el-container>-->
-      <el-container>
-        <!--左侧联系人区域-->
+      <!--左边-->
+      <div class="leftBox">
         <el-aside width="200px">
+          <!--我的头像-->
           <user-avatar></user-avatar>
-          <el-menu>
-            <el-menu-item>
-              <friend-avatar ></friend-avatar>
-            </el-menu-item>
+          <!--联系人头像-->
+          <div class="friendBox">
+            <el-menu router>
+              <el-menu-item :index="'/chat/talk'" v-for="(i,index) in friendList" :key="index">
+                <Friend-avatar :friendList="i"></Friend-avatar>
+              </el-menu-item>
+            </el-menu>
+          </div>
+          <!--设置区域-->
 
-          </el-menu>
+          <el-button type="primary" icon="el-icon-s-tools">设置</el-button>
+
         </el-aside>
+      </div>
+      <!--头部-->
+      <div class="headerBox">
+        木子日天
+      </div>
+      <!--      中间-->
+      <div class="mainBox">
+        <router-view></router-view>
+      </div>
+      <!--      底部-->
+      <div class="footerBox">
 
-        <el-container>
-          <!--头部区域-->
-          <el-header>Header</el-header>
-          <!--主体区域-->
-          <el-main>Main</el-main>
-          <!--底部发送消息区域-->
-          <el-footer>Footer</el-footer>
-        </el-container>
-      </el-container>
+      </div>
     </div>
 
   </div>
@@ -68,8 +81,24 @@ export default {
   name: "chat.vue",
   data() {
     return {
+      friendList: [
+        {id: 1, username: '木子日天木子日天', avatar: 'https://avatars.githubusercontent.com/u/96650292?v=4'},
+        {id: 2, username: '洋洋洋洋洋洋洋洋', avatar: 'https://avatars.githubusercontent.com/u/28512134?v=4'},
+        {id: 3, username: '充电器', avatar: 'https://avatars.githubusercontent.com/u/39784843?v=4'},
+        {id: 3, username: '充电器', avatar: 'https://avatars.githubusercontent.com/u/39784843?v=4'},
+        {id: 3, username: '充电器', avatar: 'https://avatars.githubusercontent.com/u/39784843?v=4'},
+        {id: 3, username: '充电器', avatar: 'https://avatars.githubusercontent.com/u/39784843?v=4'},
+        {id: 3, username: '充电器', avatar: 'https://avatars.githubusercontent.com/u/39784843?v=4'},
+        {id: 3, username: '充电器', avatar: 'https://avatars.githubusercontent.com/u/39784843?v=4'},
+        {id: 3, username: '充电器', avatar: 'https://avatars.githubusercontent.com/u/39784843?v=4'},
+        {id: 1, username: '木子日天木子日天', avatar: 'https://avatars.githubusercontent.com/u/96650292?v=4'},
+        {id: 1, username: '木子日天木子日天', avatar: 'https://avatars.githubusercontent.com/u/96650292?v=4'},
+        {id: 1, username: '木子日天木子日天', avatar: 'https://avatars.githubusercontent.com/u/96650292?v=4'},
+
+      ],
       sendMsg: {
         message: "",
+
       }
     }
   },
@@ -101,31 +130,29 @@ export default {
   height: 650px;
   width: 1100px;
   background-color: #f7f7f7;
-  border-radius: 30px;
+  border-radius: 20px;
   overflow: hidden;
 
   .el-container {
+    position: relative;
     width: 100%;
     height: 100%;
 
     .el-header, .el-footer {
+      position: absolute;
+      width: 900px;
+      right: 0;
       background-color: #B3C0D1;
       color: #333;
       text-align: center;
       line-height: 60px;
     }
 
-    // 左侧联系人区域
-    .el-aside {
-      background-color: #f7f7f7;
-      color: #333;
-      text-align: center;
-      line-height: 200px;
-      border-right: 3px solid #ccc;
-    }
 
     // 主体区域
     .el-main {
+      position: absolute;
+
       background-color: #E9EEF3;
       color: #333;
       text-align: center;
@@ -147,5 +174,76 @@ export default {
   }
 }
 
+.leftBox {
+  position: absolute;
+  left: 0;
+  background-color: pink;
+  width: 200px;
+  height: 100%;
+  // 左侧联系人区域
+  .el-aside {
+    height: 100%;
+    width: 200px;
+    position: absolute;
+    background-color: #f7f7f7;
+    color: #333;
+    text-align: center;
+    border-right: 3px solid #ccc;
+    overflow-y: hidden;
+    // 联系人
+    .friendBox {
+      width: 100%;
+      height: 80%;
+      overflow-y: scroll;
+      overflow-x: hidden;
+      margin-bottom: 0;
+    }
+
+    .el-menu {
+      width: 100%;
+      height: 100%;
+    }
+
+    .el-button {
+      position: absolute;
+      left: 0;
+      bottom: 0;
+      width: 100%;
+      height: 50px;
+      font-size: 16px;
+    }
+
+  }
+}
+
+.headerBox {
+  text-align: center;
+  line-height: 30px;
+  font-size: 20px;
+  position: absolute;
+  width: 900px;
+  height: 30px;
+  background-color: #ccc;
+  right: 0;
+}
+
+.mainBox {
+  position: absolute;
+  top: 30px;
+  right: 0;
+  width: 900px;
+  height: 500px;
+  background-color: skyblue;
+  overflow-y: scroll;
+}
+
+.footerBox {
+  position: absolute;
+  width: 900px;
+  height: 120px;
+  background-color: purple;
+  bottom: 0;
+  right: 0;
+}
 
 </style>

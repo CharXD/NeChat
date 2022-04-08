@@ -4,6 +4,7 @@ import Welcome from "@/views/Welcome.vue";
 import Login from "@/views/Login.vue";
 import Register from "@/views/Register.vue";
 import Chat from "@/views/Chat.vue";
+import Talk from "@/views/Talk";
 
 
 Vue.use(VueRouter)
@@ -15,6 +16,9 @@ const routes = [
     {
         path: '/chat',
         component: Chat,
+        children: [
+            {path: 'talk', component: Talk},
+        ]
     }
 
 ]

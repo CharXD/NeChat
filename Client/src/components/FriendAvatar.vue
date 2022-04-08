@@ -1,31 +1,34 @@
 <template>
   <div class="Avatar">
-    <el-avatar :size="40" src="https://avatars.githubusercontent.com/u/96650292?v=4"></el-avatar>
-    <span>木子日天</span>
+    <el-avatar :size="40" :src="friendList.avatar"></el-avatar>
+    <p>{{ friendList.username }}</p>
   </div>
 </template>
 
 <script>
 export default {
+  props: ['friendList'],
   name: "FriendAvatar"
 }
 </script>
 
 <style lang="less" scoped>
 .Avatar {
-  width: 80%;
+  width: 100%;
   height: 100%;
-  margin-left: 20px;
-  margin-right: 20px;
   border-bottom: 1px solid #ccc;
+  margin-top: 10px;
 
   .el-avatar {
-
+    margin-top: 5%;
+    float: left;
+    margin-right: 5px;
   }
 
-  span {
-    margin-left: 10px;
-    vertical-align: middle;
+  p {
+    font-size: 15px;
+    white-space: nowrap; text-overflow: ellipsis; overflow: hidden;
+
   }
 }
 </style>
