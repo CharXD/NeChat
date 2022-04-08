@@ -12,10 +12,14 @@ import {
     MenuItem,
     MenuItemGroup,
     Avatar,
+    Header,
+    Footer,
 } from 'element-ui'
 
 Vue.prototype.$message = Message
 Vue.use(Button)
+Vue.use(Header)
+Vue.use(Footer)
 Vue.use(Link)
 Vue.use(Input)
 Vue.use(Container)

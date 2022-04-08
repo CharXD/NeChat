@@ -2,35 +2,43 @@
   <div class="talkBox">
     <ul class="talk_list">
       <li class="left_word">
-        <img style="width: 40px;height: 40px;border-radius: 50%" src="https://avatars.githubusercontent.com/u/96650292?v=4"/>
+        <img style="width: 40px;height: 40px;border-radius: 50%"
+             src="https://avatars.githubusercontent.com/u/96650292?v=4"/>
         <span>最近还好吗</span>
       </li>
       <li class="right_word">
-        <img style="width: 40px;height: 40px;border-radius: 50%" src="https://avatars.githubusercontent.com/u/96650292?v=4"/>
+        <img style="width: 40px;height: 40px;border-radius: 50%"
+             src="https://avatars.githubusercontent.com/u/96650292?v=4"/>
+        <span>最近还好吗最近还好吗最近还好吗最近还好吗最近还好吗最近还好吗最近还好吗最近还好吗最近还好吗最近还好吗最近还好吗最近还好吗最近还好吗最近还好吗最近还好吗最近还好吗最近还好吗最近还好吗最近还好吗最近还好吗最近还好吗最近还好吗最近还好吗最近还好吗最近还好吗最近还好吗最近还好吗最近还好吗最近还好吗最近还好吗最近还好吗最近还好吗最近还好吗</span>
+      </li>
+      <li class="right_word">
+        <img style="width: 40px;height: 40px;border-radius: 50%"
+             src="https://avatars.githubusercontent.com/u/96650292?v=4"/>
         <span>最近还好吗</span>
       </li>
-    <li class="right_word">
-        <img style="width: 40px;height: 40px;border-radius: 50%" src="https://avatars.githubusercontent.com/u/96650292?v=4"/>
+      <li class="right_word">
+        <img style="width: 40px;height: 40px;border-radius: 50%"
+             src="https://avatars.githubusercontent.com/u/96650292?v=4"/>
         <span>最近还好吗</span>
       </li>
-    <li class="right_word">
-        <img style="width: 40px;height: 40px;border-radius: 50%" src="https://avatars.githubusercontent.com/u/96650292?v=4"/>
+      <li class="right_word">
+        <img style="width: 40px;height: 40px;border-radius: 50%"
+             src="https://avatars.githubusercontent.com/u/96650292?v=4"/>
         <span>最近还好吗</span>
       </li>
-    <li class="right_word">
-        <img style="width: 40px;height: 40px;border-radius: 50%" src="https://avatars.githubusercontent.com/u/96650292?v=4"/>
+      <li class="right_word">
+        <img style="width: 40px;height: 40px;border-radius: 50%"
+             src="https://avatars.githubusercontent.com/u/96650292?v=4"/>
         <span>最近还好吗</span>
       </li>
-    <li class="right_word">
-        <img style="width: 40px;height: 40px;border-radius: 50%" src="https://avatars.githubusercontent.com/u/96650292?v=4"/>
+      <li class="right_word">
+        <img style="width: 40px;height: 40px;border-radius: 50%"
+             src="https://avatars.githubusercontent.com/u/96650292?v=4"/>
         <span>最近还好吗</span>
       </li>
-    <li class="right_word">
-        <img style="width: 40px;height: 40px;border-radius: 50%" src="https://avatars.githubusercontent.com/u/96650292?v=4"/>
-        <span>最近还好吗</span>
-      </li>
-    <li class="right_word">
-        <img style="width: 40px;height: 40px;border-radius: 50%" src="https://avatars.githubusercontent.com/u/96650292?v=4"/>
+      <li class="right_word">
+        <img style="width: 40px;height: 40px;border-radius: 50%"
+             src="https://avatars.githubusercontent.com/u/96650292?v=4"/>
         <span>最近还好吗</span>
       </li>
 
@@ -71,7 +79,7 @@ export default {
         background-color: #5c91fb;
         padding: 10px 15px;
         max-width: 290px;
-        border-radius: 12px;
+        border-radius: 0 20px 20px 20px;
         font-size: 16px;
         color: #fff;
         margin-left: 13px;
@@ -90,7 +98,7 @@ export default {
         background-color: #fff;
         padding: 10px 15px;
         max-width: 290px;
-        border-radius: 12px;
+        border-radius: 20px 0 20px 20px;
         font-size: 16px;
         color: #000;
         margin-right: 13px;
