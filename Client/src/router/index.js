@@ -4,8 +4,6 @@ import Welcome from "@/views/Welcome.vue";
 import Login from "@/views/Login.vue";
 import Register from "@/views/Register.vue";
 import Chat from "@/views/Chat.vue";
-import Setting from "@/views/Setting.vue";
-import Talk from "@/views/Talk.vue";
 
 
 Vue.use(VueRouter)
@@ -17,17 +15,6 @@ const routes = [
     {
         path: '/chat',
         component: Chat,
-        redirect: '/talk',
-        children: [
-            {
-                path: '/talk',
-                component: Talk,
-            },
-            {
-                path: '/setting',
-                component: Setting,
-            }
-        ]
     }
 
 ]
