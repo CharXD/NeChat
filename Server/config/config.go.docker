@@ -1,8 +1,0 @@
-package config
-
-var (
-	ServerPort     = ":9999"		//":8080"
-	JWTSingedKey   = "123456"		//"123456"
-	JWTIssuer      = "Char"		//"Char"
-	DataSourceName = "dbuser:123456@tcp(nechat-database:3306)/nechat?charset=utf8mb4&parseTime=True"		//"[username]:[password]@tcp([ip]:[port])/[table_name]?charset=utf8mb4&parseTime=True"
-)

@@ -17,7 +17,7 @@ func JwtAuth() gin.HandlerFunc {
 			return
 		}
 		t, err := jwt.ParseWithClaims(token, &models.MyClaim{}, func(token *jwt.Token) (interface{}, error) {
-			return []byte(config.JWTSingedKey), nil
+			return []byte(config.ServerConfig.Server.JWTSingedKey), nil
 		})
 		if err != nil {
 			c.JSON(http.StatusOK, gin.H{"code": "1", "msg": "Login out"})
