@@ -84,13 +84,13 @@ func createToken(username string) (signedString string, err error) {
 	claim := models.MyClaim{
 		Username: username,
 		StandardClaims: jwt.StandardClaims{
-			NotBefore: time.Now().Unix() - 60,      //签发日期(1分钟前
-			ExpiresAt: time.Now().Unix() + 60*60*2, //过期时间(2小时
-			Issuer:    config.JWTIssuer,            //签发人
+			NotBefore: time.Now().Unix() - 60,               //签发日期(1分钟前
+			ExpiresAt: time.Now().Unix() + 60*60*2,          //过期时间(2小时
+			Issuer:    config.ServerConfig.Server.JWTIssuer, //签发人
 		},
 	}
 	token := jwt.NewWithClaims(jwt.SigningMethodHS256, claim)
-	signedString, err = token.SignedString([]byte(config.JWTSingedKey))
+	signedString, err = token.SignedString([]byte(config.ServerConfig.Server.JWTSingedKey))
 	if err != nil {
 		fmt.Println(err)
 		return "", err
