@@ -13,9 +13,11 @@ const routes = [
     {path: '/', component: Welcome,},
     {path: '/login', component: Login,},
     {path: '/register', component: Register,},
+
     {
         path: '/chat',
         component: Chat,
+        redirect: '/chat/talk',
         children: [
             {path: 'talk', component: Talk},
         ]

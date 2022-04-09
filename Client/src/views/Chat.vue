@@ -1,55 +1,32 @@
 <template>
   <div class="bg">
     <div class="stage">
-
-      <!--      <div class="mainBox">
-              &lt;!&ndash;左侧联系人区域&ndash;&gt;
-              <div class="leftBox">
-                <el-aside width="200px">
-                  &lt;!&ndash;我的头像&ndash;&gt;
-                  <user-avatar></user-avatar>
-                  &lt;!&ndash;联系人的头像&ndash;&gt;
-                  <div class="friendBox">
-                    <el-menu router>
-                      <el-menu-item :index="'/chat/talk'" v-for="(i,index) in friendList" :key="index">
-                        <Friend-avatar :friendList="i"></Friend-avatar>
-                      </el-menu-item>
-                    </el-menu>
-                  </div>
-                  &lt;!&ndash;设置区域&ndash;&gt;
-
-                  <el-button type="primary" icon="el-icon-s-tools">设置</el-button>
-
-                </el-aside>
-
-              </div>
-              <el-container>
-                &lt;!&ndash;头部区域&ndash;&gt;
-                <el-header>
-                  Header
-                </el-header>
-                &lt;!&ndash;主体区域&ndash;&gt;
-                <el-main>
-                  <router-view></router-view>
-                </el-main>
-                &lt;!&ndash;底部发送消息区域&ndash;&gt;
-                <el-footer>Footer</el-footer>
-              </el-container>
-            </div>-->
-
       <!--左边-->
       <div class="leftBox">
         <el-aside width="200px">
+
           <!--我的头像-->
           <user-avatar></user-avatar>
+          <!--搜索区域-->
+          <div class="searchBox">
+
+            <el-input placeholder="搜索">
+              <i slot="prefix" class="el-input__icon el-icon-search">
+              </i>
+            </el-input>
+          </div>
+
           <!--联系人头像-->
           <div class="friendBox">
             <el-menu router>
-              <el-menu-item :index="'/chat/talk'" v-for="(i,index) in friendList" :key="index">
+              <el-menu-item :index="'/chat/talk'" @click="changingContacts(i.username)" v-for="(i,index) in friendList"
+                            :key="index">
                 <Friend-avatar :friendList="i"></Friend-avatar>
               </el-menu-item>
             </el-menu>
           </div>
+
+
           <!--设置区域-->
 
           <el-button type="primary" icon="el-icon-s-tools">设置</el-button>
@@ -58,7 +35,7 @@
       </div>
       <!--头部-->
       <div class="headerBox">
-        木子日天
+        {{ headerName }}
       </div>
       <!--      中间-->
       <div class="mainBox">
@@ -66,7 +43,8 @@
       </div>
       <!--      底部-->
       <div class="footerBox">
-
+        <textarea placeholder="说点什么吧~"></textarea>
+        <el-button type="primary">发送</el-button>
       </div>
     </div>
 
@@ -81,6 +59,7 @@ export default {
   name: "chat.vue",
   data() {
     return {
+      // 模拟后端返还的数据
       friendList: [
         {id: 1, username: '木子日天木子日天', avatar: 'https://avatars.githubusercontent.com/u/96650292?v=4'},
         {id: 2, username: '洋洋洋洋洋洋洋洋', avatar: 'https://avatars.githubusercontent.com/u/28512134?v=4'},
@@ -96,9 +75,10 @@ export default {
         {id: 1, username: '木子日天木子日天', avatar: 'https://avatars.githubusercontent.com/u/96650292?v=4'},
 
       ],
+      // header区域名字
+      headerName: '',
       sendMsg: {
         message: "",
-
       }
     }
   },
@@ -106,10 +86,15 @@ export default {
   methods: {
     goSetting() {
       this.$router.push('/setting')
+    },
+    changingContacts(username) {
+      this.headerName = username
     }
   }
 }
 </script>
+
+
 
 <style scoped lang="less">
 .bg {
@@ -127,7 +112,7 @@ export default {
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  height: 650px;
+  height: 750px;
   width: 1100px;
   background-color: #f7f7f7;
   border-radius: 20px;
@@ -138,7 +123,7 @@ export default {
     width: 100%;
     height: 100%;
 
-    .el-header, .el-footer {
++    .el-header, .el-footer {
       position: absolute;
       width: 900px;
       right: 0;
@@ -152,7 +137,6 @@ export default {
     // 主体区域
     .el-main {
       position: absolute;
-
       background-color: #E9EEF3;
       color: #333;
       text-align: center;
@@ -190,6 +174,10 @@ export default {
     text-align: center;
     border-right: 3px solid #ccc;
     overflow-y: hidden;
+    //搜索
+    .searchBox {
+    }
+
     // 联系人
     .friendBox {
       width: 100%;
@@ -223,7 +211,8 @@ export default {
   position: absolute;
   width: 900px;
   height: 30px;
-  background-color: #ccc;
+  color: gray;
+  background-color: #f1f3f4;
   right: 0;
 }
 
@@ -232,8 +221,8 @@ export default {
   top: 30px;
   right: 0;
   width: 900px;
-  height: 500px;
-  background-color: skyblue;
+  height: 600px;
+  background-color: #f1f3f4;
   overflow-y: scroll;
 }
 
@@ -241,9 +230,29 @@ export default {
   position: absolute;
   width: 900px;
   height: 120px;
-  background-color: purple;
+  background-color: white;
   bottom: 0;
   right: 0;
+
+  textarea {
+
+    border: none;
+    border-top: 3px solid #ccc;
+    outline: none;
+    resize: none;
+    width: 99%;
+    height: 80%;
+    font-size: 15px;
+    padding: 10px;
+    //font-family: "Arial Black";
+    font-family: "Microsoft YaHei";
+  }
+
+  .el-button {
+    position: absolute;
+    bottom: 10px;
+    right: 10px;
+  }
 }
 
 </style>

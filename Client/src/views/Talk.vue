@@ -56,13 +56,13 @@ export default {
 .talkBox {
   width: 100%;
   height: 100%;
-  background-color: #ccc;
+  background-color: transparent;
 
   .talk_list {
     display: flex;
     flex-direction: column;
 
-    background-color: skyblue;
+    background-color: transparent;
 
     li {
       overflow: hidden;
@@ -76,12 +76,12 @@ export default {
 
       span {
         float: left;
-        background-color: #5c91fb;
+        background-color: #fff;
         padding: 10px 15px;
         max-width: 290px;
         border-radius: 0 20px 20px 20px;
         font-size: 16px;
-        color: #fff;
+        color: #000;
         margin-left: 13px;
         position: relative;
         line-height: 24px;
@@ -95,12 +95,12 @@ export default {
 
       span {
         float: right;
-        background-color: #fff;
+        background-color: #5c91fb;
         padding: 10px 15px;
         max-width: 290px;
         border-radius: 20px 0 20px 20px;
         font-size: 16px;
-        color: #000;
+        color: white;
         margin-right: 13px;
         position: relative;
         line-height: 24px;
