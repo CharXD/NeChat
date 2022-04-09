@@ -34,7 +34,7 @@
 docker-compose up -d
 ```
 
-`nechat-server` 映射到了宿主机的 9999 端口  
+`nechat-server` 映射到了宿主机的 25566 端口  
 `nechat-database` 映射到了宿主机的 3306 端口  
 `nechat-client` 映射到了宿主机的 8080 端口  
 
