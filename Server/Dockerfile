@@ -21,6 +21,6 @@ RUN echo "http://mirrors.aliyun.com/alpine/v3.7/main/" > /etc/apk/repositories &
 COPY --from=build /app/go_server /usr/bin/go_server
 Run chmod +x /usr/bin/go_server
 
-EXPOSE 9999
+EXPOSE 25566
 
 ENTRYPOINT ["go_server"]
