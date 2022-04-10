@@ -18,9 +18,10 @@ RUN echo "http://mirrors.aliyun.com/alpine/v3.7/main/" > /etc/apk/repositories &
     cp /usr/share/zoneinfo/Asia/Shanghai /etc/localtime && \
     echo 'Asia/Shanghai' >/etc/timezone
 
-COPY --from=build /app/go_server /usr/bin/go_server
-Run chmod +x /usr/bin/go_server
+COPY --from=build /app/go_server /app/go_server
+COPY ./config/config_docker.json /app/config/config.json
+Run chmod +x /app/go_server
 
-EXPOSE 9999
+EXPOSE 25566
 
-ENTRYPOINT ["go_server"]
+ENTRYPOINT cd /app && ./go_server
