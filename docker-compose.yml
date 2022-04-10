@@ -3,26 +3,21 @@ services:
   server:
     container_name: nechat-server
     build: ./Server
-    ports:
-      - "25566:25566"
+    # ports:
+    #   - "25566:25566"
     depends_on:
       - database
-    networks:
-      - backend
   
   database:
     container_name: nechat-database
     build: ./Database
-    ports:
-      - "3306:3306"
-    networks:
-      - backend
+    # ports:
+    #   - "3306:3306"
 
   client:
     container_name: nechat-client
     build: ./Client
     ports:
       - "8080:8080"
-
-networks:
-  backend:
+    depends_on:
+      - server
