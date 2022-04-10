@@ -5,6 +5,7 @@ MAINTAINER yeol
 ADD . /app
 WORKDIR /app
 
+RUN echo 'VUE_APP_API = /api' > .env
 RUN yarn config set registry https://registry.npm.taobao.org/ && \
     yarn install && \
     yarn build
