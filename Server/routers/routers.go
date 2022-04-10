@@ -10,10 +10,10 @@ func SetupRouter() *gin.Engine {
 	router := gin.Default()
 	router.Use(middleware.Cors())
 
-	router.POST("/login", controller.LoginHandler)
-	router.POST("/register", controller.RegisterHandler)
-	router.GET("/ws", middleware.JwtAuth(), controller.WsHandler)
-	router.DELETE("/user", middleware.JwtAuth(), controller.DeleteUserHandler)
+	router.POST("/api/login", controller.LoginHandler)
+	router.POST("/api/register", controller.RegisterHandler)
+	router.GET("/api/ws", middleware.JwtAuth(), controller.WsHandler)
+	router.DELETE("/api/user", middleware.JwtAuth(), controller.DeleteUserHandler)
 
 	return router
 }
