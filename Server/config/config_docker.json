@@ -5,14 +5,10 @@
     "JWTIssuer": "Server"
   },
   "SQL":{
-    "User": "root",
+    "User": "dbuser",
     "Pass": "123456",
-    "Host": "127.0.0.1",
+    "Host": "nechat-database",
     "Port": "3306",
     "Database": "nechat"
-  },
-  "Client": {
-    "Host": "127.0.0.1",
-    "Port": "25566"
   }
 }
