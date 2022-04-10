@@ -40,8 +40,7 @@ export default {
         });
         return;
       }
-
-      axios.post('http://127.0.0.1:25566/login', {
+      axios.post(process.env.VUE_APP_API+'/login', {
         UserName: this.username,
         Password: this.password
       })

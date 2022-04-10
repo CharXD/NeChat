@@ -21,7 +21,7 @@
 
 <script>
 import axios from "axios"
-// import {Message} from 'element-ui';
+import {Message} from 'element-ui';
 
 export default {
   name: 'Register',
@@ -37,14 +37,14 @@ export default {
     register() {
       // this.$router.replace('#/Register');
       if (this.username === null || this.password === null || this.confirm_password === null) {
-        this.$message({
+        Message({
           message: '用户名或密码不能为空', type: 'warning', duration: 1500
         });
         return;
       }
 
       if (this.password !== this.confirm_password) {
-        this.$message({
+        Message({
           message: '两次输入密码不一致', type: 'warning', duration: 1500
         });
         return;
@@ -54,37 +54,37 @@ export default {
       const p_pattern =/^.*(?=.{6,})(?=.*\d)(?=.*[A-Z])(?=.*[a-z])(?=.*[!@#$%^&*?.]).*$/;
 
       if (!u_pattern.test(this.username)) {
-        this.$message({
+        Message({
           message: '用户名必须符合4到16位（字母，数字，下划线，减号）', type: 'warning', duration: 1500
         });
         return;
       }
 
       if (!p_pattern.test(this.password)) {
-        this.$message({
+        Message({
           message: '密码最少6位，包括至少1个大写字母，1个小写字母，1个数字，1个特殊字符', type: 'warning', duration: 1500
         });
         return;
       }
 
-      axios.post('http://127.0.0.1:25566/register', {
+      axios.post(process.env.VUE_APP_API+'/register', {
         UserName: this.username,
         Password: this.password
       })
           .then(function (response) {
             const data = response.data;
             if (data.code === 0) {
-              this.$message({
+              Message({
                 message: data.msg, type: 'success', duration: 1500
               });
             } else {
-              this.$message({
+              Message({
                 message: data.msg, type: 'error', duration: 1500
               });
             }
           })
           .catch(function (error) {
-            this.$message({
+            Message({
               message: error, type: 'error', duration: 1500
             });
           })
