@@ -3,7 +3,7 @@ package middleware
 import (
 	"NeChat/config"
 	"NeChat/models"
-	"github.com/dgrijalva/jwt-go"
+	"github.com/golang-jwt/jwt"
 	"github.com/gin-gonic/gin"
 	"net/http"
 )

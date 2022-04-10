@@ -4,7 +4,7 @@ import (
 	"NeChat/dao"
 	"database/sql"
 	"fmt"
-	"github.com/dgrijalva/jwt-go"
+	"github.com/golang-jwt/jwt"
 )
 
 type User struct {
