@@ -29,7 +29,7 @@ type SQL struct {
 }
 
 func InitConfig() {
-	configFile, err := os.Open("../config.json")
+	configFile, err := os.Open("config/config.json")
 	if err != nil {
 		fmt.Println(err)
 	}
