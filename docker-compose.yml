@@ -4,7 +4,7 @@ services:
     container_name: nechat-server
     build: ./Server
     ports:
-      - "9999:9999"
+      - "25566:25566"
     depends_on:
       - database
     networks:
@@ -22,7 +22,7 @@ services:
     container_name: nechat-client
     build: ./Client
     ports:
-      - "8080:8080"
+      - "8081:8081"
 
 networks:
   backend:
